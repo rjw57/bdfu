@@ -56,3 +56,40 @@ def test_simple_write():
         with open(expected_path, 'rb') as f:
             assert f.read() == contents
 
+
+def test_repeat_write():
+    """Storage should write file's contents to <user>/<uuid> and return
+    <uuid>. It should support multiple writes and <uuid>s should differ/
+
+    """
+    # Get some random bytes to be file contents
+    contents = os.urandom(1024)
+
+    with temp_storage() as storage:
+        # Write to "testuser"
+        username = 'testuser'
+        file_id_1 = storage.write(username, BytesIO(contents))
+        assert file_id_1 is not None
+
+        # Does file exist?
+        expected_path = os.path.join(storage.destdir, username, file_id_1)
+        assert os.path.isfile(expected_path)
+
+        # Does it have correct contents?
+        with open(expected_path, 'rb') as f:
+            assert f.read() == contents
+
+        file_id_2 = storage.write(username, BytesIO(contents))
+        assert file_id_2 is not None
+
+        # Does file exist?
+        expected_path = os.path.join(storage.destdir, username, file_id_2)
+        assert os.path.isfile(expected_path)
+
+        # Does it have correct contents?
+        with open(expected_path, 'rb') as f:
+            assert f.read() == contents
+
+        # File ids should differ
+        assert file_id_1 != file_id_2
+
