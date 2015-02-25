@@ -6,12 +6,12 @@ User authentication.
 import jwt
 import datetime
 
-def make_user_token(username, secret):
+def make_user_token(username, secret, expires_in=30):
     """Given a username and server secret, generate an authorization token for
     the given user.
 
     """
-    return _jwt_token(dict(user=username), secret)
+    return _jwt_token(dict(user=username), secret, expires_in=expires_in)
 
 def _to_numeric(dt):
     """Convert a datetime instance to a numeric date as per JWT spec."""
