@@ -1,0 +1,17 @@
+# 2/3 compatibility
+future
+
+# Creating JSON web tokens
+pyjwt
+
+# HTTP client
+requests
+
+# HTTP application
+flask
+flask-jwt
+flask-script
+
+# Testing
+tox
+
