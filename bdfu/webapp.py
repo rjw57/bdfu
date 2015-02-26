@@ -17,8 +17,9 @@ from bdfu.storage import Storage
 app = Flask(__name__)
 jwt = JWT(app)
 
-# Configure the application from the environment
-app.config.from_envvar('BDFU_SETTINGS')
+# Configure the application from the environment. It's a soft-failure if such a
+# variable is not set.
+app.config.from_envvar('BDFU_SETTINGS', silent=True)
 
 ## VIEW FUNCTIONS ##
 

@@ -35,4 +35,14 @@ The development version may be installed directly from this repository:
 $ pip install -e git+https://github.com/rjw57/bdfu#egg=bdfu
 ```
 
+Configuration is performed by setting the environment variable
+``BDFU_SETTINGS`` to the *absolute* path of a configuration file. For example:
+
+```console
+$ cat >settings.cfg <<__EOF__
+JWT_SECRET_KEY='mysypersecretkey'
+STORAGE_DIR='/tmp/bdfu-storage'
+__EOF__
+$ export BDFU_SETTINGS="$PWD/settings.cfg"
+```
 

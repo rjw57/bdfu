@@ -1,23 +1,18 @@
 #!/usr/bin/env python
-import json
+"""
+A minimal example of running BDFU as a WSGI application.
 
-from flask.ext.script import Manager
+The BDFU_SETTINGS environment variable should be set to point to an appropriate
+configuration file.
+
+"""
+from __future__ import print_function
+
+from wsgiref.simple_server import make_server
 from bdfu.webapp import app
 
-def configure_app(config):
-    with open(config, 'r') as f:
-        config_dict = json.load(f)
-    app.config['JWT_SECRET_KEY'] = config_dict['secret']
-    app.config['STORAGE_DIR'] = config_dict['storage']
-    return app
-
-manager = Manager(configure_app)
-manager.add_option(
-    '-c', '--config', dest='config',
-    help='JSON file to load configuration from',
-    required=True,
-)
-
 if __name__ == '__main__':
-    manager.run()
+    server = make_server('', 8000, app)
+    print('Serving HTTP on http://{0.server_name}:{0.server_port}/'.format(server))
+    server.serve_forever()
 
