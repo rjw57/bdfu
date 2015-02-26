@@ -17,6 +17,9 @@ from bdfu.storage import Storage
 app = Flask(__name__)
 jwt = JWT(app)
 
+# Configure the application from the environment
+app.config.from_envvar('BDFU_SETTINGS')
+
 ## VIEW FUNCTIONS ##
 
 @app.route('/upload', methods=['POST'])
