@@ -12,7 +12,7 @@ from urllib.parse import urljoin
 class ClientError(Exception):
     def __init__(self, response):
         self.response = response
-        self.message = 'HTTP ' + str(response.status_code)
+        self.message = 'HTTP ' + str(response.status_code) + ' (' + str(response.content) + ')'
 
     def __str__(self):
         return self.message
