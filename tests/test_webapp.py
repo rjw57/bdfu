@@ -18,7 +18,7 @@ def jwt_headers(*args, **kwargs):
     Authorization bearer token using the JWT.
 
     """
-    return { 'Authorization': 'Bearer ' + _jwt_token(*args, **kwargs) }
+    return { 'Authorization': 'Bearer ' + _jwt_token(*args, **kwargs).decode('ascii') }
 
 def jwt_payload(user=None):
     """Create a minimally valid JWT payload. If user is None, use "testuser".
