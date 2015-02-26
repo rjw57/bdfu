@@ -17,8 +17,7 @@ def _to_numeric(dt):
     """Convert a datetime instance to a numeric date as per JWT spec."""
     return int((dt - datetime.datetime.utcfromtimestamp(0)).total_seconds())
 
-def _jwt_token(payload, secret, headers=None, algorithm='HS256',
-        expires_in=30, with_times=True, **kwargs):
+def _jwt_token(payload, secret, expires_in=30, with_times=True, **kwargs):
     """Return a JWT with the given payload. Any remaining keyword args are
     passed to jwt.encode().
 
@@ -37,11 +36,9 @@ def _jwt_token(payload, secret, headers=None, algorithm='HS256',
     if payload is None:
         payload = {}
 
-    if headers is None:
-        headers = {}
-
-    if algorithm is None:
-        raise ValueError('Bad algorithm')
+    headers = kwargs.get('headers', {})
+    if 'headers' in kwargs:
+        del kwargs['headers']
 
     if secret is None:
         raise ValueError('Bad secret')
@@ -60,6 +57,6 @@ def _jwt_token(payload, secret, headers=None, algorithm='HS256',
         if 'exp' not in headers:
             headers['exp'] = ext_payload['exp']
 
-    return jwt.encode(payload, secret, algorithm, headers=headers, **kwargs)
+    return jwt.encode(payload, secret, headers=headers, **kwargs)
 
 
