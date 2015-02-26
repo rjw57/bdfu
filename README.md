@@ -103,6 +103,42 @@ a web application which is protected by an existing identity provider.
 Similarly administrators are free to choose the expiry time for the tokens on a
 per-user basis using whichever policy they see fit.
 
+## Uploading
+
+In addition to the command-line tool, standard UNIX tools may also be used:
+
+### cURL
+
+The appropriate cURL magic would look like the following:
+
+```console
+$ curl -X POST -H "Authorization: Bearer `cat token-sally.txt`" \
+    -F file=@test-file.bin http://localhost:8080/upload
+
+{
+  "id": "c825b2bda8cf491ca6631cb70794fea1"
+}
+```
+
+### httpie
+
+The [httpie](https://github.com/jakubroztocil/httpie) tool is a friendlier
+cURL-like tool optimised for calling web APIs:
+
+```console
+$ http --form POST http://localhost:8080/upload \
+    "Authorization: Bearer `cat token-sally.txt`" file@test-file.bin
+HTTP/1.0 201 CREATED
+Content-Length: 46
+Content-Type: application/json
+Date: Thu, 26 Feb 2015 13:57:04 GMT
+Server: WSGIServer/0.1 Python/2.7.9
+
+{
+    "id": "a43c28d37fea4bf58854c1301f7db76a"
+}
+```
+
 ## Server Deployment
 
 ### WSGI
