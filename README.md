@@ -1,5 +1,7 @@
 # bdfu: a "brain dead"-simple file upload server
 
+[![Build Status](https://travis-ci.org/rjw57/bdfu.svg?branch=master)](https://travis-ci.org/rjw57/bdfu)
+
 BDFU is designed to solve the single problem of letting one or more users
 upload files to some server in an authenticated manner. Specifically, the
 following simplifications are made:
@@ -13,6 +15,11 @@ following simplifications are made:
 
 *   Users are authenticated with finite-lifetime [JWT](http://jwt.io/) tokens
     which may be issued manually or automatically.
+
+*   The server requires nothing more than Python and a CGI-capable web-server
+    although is available as a
+    [WSGI](http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface)
+    application for greater performance.
 
 ## Installation and getting started
 
