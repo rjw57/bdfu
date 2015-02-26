@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="bdfu",
-    version="1.0.0",
+    version="1.0.1",
     packages=find_packages(),
     long_description=open('README.md', 'r').read(),
     short_description='A "brain dead"-simple file upload server',
