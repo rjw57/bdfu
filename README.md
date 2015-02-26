@@ -84,7 +84,8 @@ is uploaded to ``$STORAGE_DIR/$USER/$FILE_ID`` which we can check:
 ```console
 $ ls /tmp/bdfu-storage-example/sally/
 ecbfb21578ad49548472d955b38ac65b
-$ diff /tmp/bdfu-storage-example/sally/ecbfb21578ad49548472d955b38ac65b test-file.bin
+$ diff -qs /tmp/bdfu-storage-example/sally/ecbfb21578ad49548472d955b38ac65b test-file.bin
+Files /tmp/bdfu-storage-example/sally/ecbfb21578ad49548472d955b38ac65b and test-file.bin are identical
 ```
 
 ## Token generation
