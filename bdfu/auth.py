@@ -11,7 +11,7 @@ def make_user_token(username, secret, expires_in=30):
     the given user.
 
     """
-    return _jwt_token(dict(user=username), secret, expires_in=expires_in)
+    return _jwt_token(dict(user=username), secret, expires_in=expires_in).decode('ascii')
 
 def _to_numeric(dt):
     """Convert a datetime instance to a numeric date as per JWT spec."""
