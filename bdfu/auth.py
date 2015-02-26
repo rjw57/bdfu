@@ -23,7 +23,7 @@ def _jwt_token(payload, secret, expires_in=30, with_times=True, **kwargs):
 
     If payload is None, an empty payload is used.
 
-    If headers is None, no headers are added beyone 'exp' and 'nbf'.
+    If headers is None, no headers are added beyond 'exp' and 'nbf'.
 
     The standard 'exp' and 'nbf' claims are added. In addition, the 'exp' claim
     is added into the header. The 'exp' time is now plus the number of seconds
