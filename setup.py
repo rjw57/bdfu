@@ -1,10 +1,17 @@
 from setuptools import setup, find_packages
 
+def read_file(filename):
+    """Read a file or return the empty string if there is some error."""
+    try:
+        return open(filename, 'r').read()
+    except IOError:
+        return ''
+
 setup(
     name="bdfu",
-    version="1.0.1",
+    version="1.0.2",
     packages=find_packages(),
-    long_description=open('README.md', 'r').read(),
+    long_description=read_file("README.md"),
     short_description='A "brain dead"-simple file upload server',
     entry_points=dict(
         console_scripts=[
