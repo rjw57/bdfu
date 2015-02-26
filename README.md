@@ -114,7 +114,6 @@ The appropriate cURL magic would look like the following:
 ```console
 $ curl -X POST -H "Authorization: Bearer `cat token-sally.txt`" \
     -F file=@test-file.bin http://localhost:8080/upload
-
 {
   "id": "c825b2bda8cf491ca6631cb70794fea1"
 }
