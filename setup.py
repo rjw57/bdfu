@@ -9,10 +9,10 @@ def read_file(filename):
 
 setup(
     name="bdfu",
-    version="1.0.2",
+    version="1.0.3",
     packages=find_packages(),
     long_description=read_file("README.md"),
-    short_description='A "brain dead"-simple file upload server',
+    description='A "brain dead"-simple file upload server',
     entry_points=dict(
         console_scripts=[
             'bdfu = bdfu.tool:main',
