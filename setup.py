@@ -4,6 +4,8 @@ setup(
     name="bdfu",
     version="1.0.0",
     packages=find_packages(),
+    long_description=open('README.md', 'r').read(),
+    short_description='A "brain dead"-simple file upload server',
     entry_points=dict(
         console_scripts=[
             'bdfu = bdfu.tool:main',
